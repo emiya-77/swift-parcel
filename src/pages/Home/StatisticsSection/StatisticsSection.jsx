@@ -1,17 +1,37 @@
 import StatisticsSectionCard from "./StatisticsSectionCard";
-import CountUp from 'react-countup';
-import 'react-countup/dist/esm/react-countup.css';
+import { PiPackageThin } from 'react-icons/pi';
+import { FaTruckFast } from "react-icons/fa6";
+import { FaUsers } from "react-icons/fa";
+import { useEffect, useState } from "react";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
 const StatisticsSection = () => {
-    const parcelsBooked = 1500;
-    const parcelsDelivered = 1200;
-    const usersCount = 5000;
+    const axiosPublic = useAxiosPublic();
+    const [parcelsBooked, setParcelsBooked] = useState(0);
+    const [parcelsDelivered, setParcelsDelivered] = useState(0);
+    const [usersCount, setUsersCount] = useState(0);
+
+    useEffect(() => {
+        axiosPublic.get('/home-stats')
+            .then(res => {
+                const { bookedParcelsCount, deliverdParcelsCount, usersCount } = res.data || {};
+                setParcelsBooked(bookedParcelsCount);
+                setParcelsDelivered(deliverdParcelsCount);
+                setUsersCount(usersCount);
+            })
+    }, [axiosPublic]);
 
     return (
-        <div className="flex justify-center mt-8">
-            <StatisticsSectionCard icon="📦" title="Parcels Booked" value={parcelsBooked} />
-            <StatisticsSectionCard icon="🚚" title="Parcels Delivered" value={parcelsDelivered} />
-            <StatisticsSectionCard icon="👥" title="Users Count" value={usersCount} />
+        <div className="my-20">
+            <div className="mb-12 text-center">
+                <h1 className="text-5xl mb-4 tracking-wider">Our Results</h1>
+                <p className="text-2xl">Satisfied Customers</p>
+            </div>
+            <div className="container mx-auto flex justify-center my-12">
+                <StatisticsSectionCard icon={<PiPackageThin />} title="Parcels Booked" value={parcelsBooked} />
+                <StatisticsSectionCard icon={<FaTruckFast />} title="Parcels Delivered" value={parcelsDelivered} />
+                <StatisticsSectionCard icon={<FaUsers />} title="Users Count" value={usersCount} />
+            </div>
         </div>
     );
 };

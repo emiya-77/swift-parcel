@@ -4,10 +4,11 @@ import { Link } from "react-router-dom";
 import useAuth from "../../../../hooks/useAuth";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 
 const BookParcel = () => {
+    const { user } = useAuth();
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const [cost, setCost] = useState(0);
     const axiosPublic = useAxiosPublic();
@@ -32,7 +33,6 @@ const BookParcel = () => {
         }
     };
 
-    const { user } = useAuth();
 
     const onSubmit = async (data) => {
         console.log(data)
