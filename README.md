@@ -9,9 +9,6 @@
 ![Static Badge](https://img.shields.io/badge/Vercel-Server-white)
 
 
-![Alt text](public/img/carbon.png)
-
-
 
 # Swift Parcel | Parcel Management Website
 
