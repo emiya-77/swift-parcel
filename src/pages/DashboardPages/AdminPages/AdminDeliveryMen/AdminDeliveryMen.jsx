@@ -1,8 +1,9 @@
-import useParcel from "../../../../hooks/useParcel";
+import useUsers from "../../../../hooks/useUsers";
+import AdminDeliveryCard from "./AdminDeliveryCard";
 
 
-const MyParcel = () => {
-    const [parcel] = useParcel();
+const AdminDeliveryMen = () => {
+    const [users] = useUsers();
     return (
         <>
             <div className="w-96 mx-auto text-center py-6 mb-6 border-y-[3px] border-orange-200">
@@ -20,22 +21,20 @@ const MyParcel = () => {
                                             No.
                                         </label>
                                     </th>
-                                    <th>Parcel Type</th>
-                                    <th>Requested Delivery Date</th>
-                                    <th>Approximate Delivery Date</th>
+                                    <th>User&apos;s Name</th>
+                                    <th>User&apos;s Phone</th>
                                     <th>Booking Date</th>
-                                    <th>Delivery Men ID</th>
-                                    <th>Booking Status</th>
-                                    <th>Update/Cancel</th>
-                                    <th>Review</th>
-                                    <th>Pay</th>
+                                    <th>Requested Delivery Date</th>
+                                    <th>Cost</th>
+                                    <th>Status</th>
+                                    <th>Manage</th>
                                 </tr>
                             </thead>
                             {/* rows */}
                             <tbody>
-                                {
-                                    // myOrderList.map((orderItem, idx) => <MyOrderCard key={orderItem._id} idx={idx + 1} handleDelete={handleDelete} orderItem={orderItem}></MyOrderCard>)
-                                }
+                                {/* {
+                                    users.map((item, idx) => <AdminDeliveryCard key={item._id} idx={idx + 1} item={item}></AdminDeliveryCard>)
+                                } */}
                             </tbody>
                         </table>
                     </div>
@@ -45,4 +44,4 @@ const MyParcel = () => {
     );
 };
 
-export default MyParcel;
+export default AdminDeliveryMen;

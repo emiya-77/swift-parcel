@@ -8,6 +8,10 @@ import UserHome from "../pages/DashboardPages/UserPages/UserHome/UserHome";
 import BookParcel from "../pages/DashboardPages/UserPages/BookParcel/BookParcel";
 import MyParcel from "../pages/DashboardPages/UserPages/MyParcel/MyParcel";
 import MyProfile from "../pages/DashboardPages/UserPages/MyProfile/MyProfile";
+import AdminStatistics from "../pages/DashboardPages/AdminPages/AdminStatistics/AdminStatistics";
+import AdminParcel from "../pages/DashboardPages/AdminPages/AdminParcel/AdminParcel";
+import AdminUsers from "../pages/DashboardPages/AdminPages/AdminUsers/AdminUsers";
+import AdminDeliveryMen from "../pages/DashboardPages/AdminPages/AdminDeliveryMen/AdminDeliveryMen";
 
 
 export const router = createBrowserRouter([
@@ -48,6 +52,24 @@ export const router = createBrowserRouter([
             {
                 path: 'my-profile',
                 element: <MyProfile></MyProfile>
+            },
+
+            // admin routes
+            {
+                path: 'statistics',
+                element: <AdminStatistics></AdminStatistics>
+            },
+            {
+                path: 'all-parcel',
+                element: <AdminParcel></AdminParcel>
+            },
+            {
+                path: 'all-user',
+                element: <AdminUsers></AdminUsers>
+            },
+            {
+                path: 'all-delivery',
+                element: <AdminDeliveryMen></AdminDeliveryMen>
             },
         ]
     }

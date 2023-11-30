@@ -5,8 +5,11 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaGoogle } from 'react-icons/fa';
 import { AuthContext } from '../../providers/AuthProvider';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
+import Swal from 'sweetalert2';
 
 const Login = () => {
+    const axiosPublic = useAxiosPublic();
     const [showPassword, setShowPassword] = useState();
     const { signIn, signInWithGoogle } = useContext(AuthContext);
     const location = useLocation();
@@ -52,6 +55,26 @@ const Login = () => {
         signInWithGoogle()
             .then(result => {
                 console.log(result.user);
+                const user = result.user;
+                const userInfo = {
+                    name: user.displayName,
+                    email: user.email,
+                    role: 'user'
+                }
+                axiosPublic.post('/users', userInfo)
+                    .then(res => {
+                        if (res.data.insertedId) {
+                            console.log('user added to the database')
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'User created successfully.',
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                            navigate('/');
+                        }
+                    })
                 navigate('/');
                 toast.success('Logged In Successfully!', {
                     position: "top-right",

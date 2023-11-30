@@ -1,6 +1,5 @@
 import { HiMenuAlt3, HiOutlineBookOpen } from 'react-icons/hi';
-import { MdOutlineRestaurantMenu } from 'react-icons/md';
-import { AiOutlineUser, AiOutlineHome } from 'react-icons/ai';
+import { AiOutlineUser, AiOutlineHome, AiOutlineBarChart, AiOutlineShoppingCart } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
 import useAdmin from '../../hooks/useAdmin';
@@ -10,22 +9,21 @@ const Sidebar = () => {
     const [isAdmin] = useAdmin();
 
     const adminMenus = [
-        { name: 'Home', link: 'admin-home', icon: AiOutlineHome },
-        { name: 'All Parcels', link: 'all-parcel', icon: AiOutlineUser },
-        { name: 'All Users', link: 'all-user', icon: MdOutlineRestaurantMenu },
-        { name: 'All Delivery Men', link: 'all-delivery', icon: HiOutlineBookOpen },
-        { name: 'Statistics', link: 'statistics', icon: HiOutlineBookOpen }
+        { name: 'Statistics', link: 'statistics', icon: AiOutlineBarChart },
+        { name: 'All Parcels', link: 'all-parcel', icon: AiOutlineShoppingCart },
+        { name: 'All Users', link: 'all-user', icon: AiOutlineUser },
+        { name: 'All Delivery Men', link: 'all-delivery', icon: HiOutlineBookOpen }
     ]
 
     const userMenus = [
         { name: 'Home', link: 'user-home', icon: AiOutlineHome },
         { name: 'Book a Parcel', link: 'book-parcel', icon: HiOutlineBookOpen },
-        { name: 'My Parcels', link: 'my-parcel', icon: MdOutlineRestaurantMenu },
+        { name: 'My Parcels', link: 'my-parcel', icon: AiOutlineShoppingCart },
         { name: 'My Profile', link: 'my-profile', icon: AiOutlineUser }
     ]
 
     return (
-        <section className='flex gap-6'>
+        <section className='flex gap-6 fixed'>
             <div className={`bg-orange-50 dark:bg-[#ba721b] dark:text-white min-h-screen ${open ? 'w-72' : 'w-16'} duration-700 text-black px-3`}>
                 <div className={`py-3 flex ${open ? 'justify-between' : 'justify-center'}`}>
                     <Link className='h-[60px] flex items-center' to='/'>
@@ -35,7 +33,7 @@ const Sidebar = () => {
                 </div>
                 <div className='mt-4 flex flex-col gap-4 relative'>
                     {
-                        isAdmin
+                        !isAdmin
                             ? (adminMenus?.map((menu, i) => (
                                 <Link className={`${menu?.margin ? 'mt-5' : menu?.marginBot ? 'mb-5' : ''} group flex items-center text-sm gap-3.5 font-medium p-2 hover:bg-[#eec38e] rounded-md`} to={menu?.link} key={i}>
                                     <div>

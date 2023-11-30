@@ -27,7 +27,7 @@ const Navbar = () => {
 
     const smNavLinks = <>
         <li><NavLink to='/'>Home</NavLink></li>
-        <li><NavLink to='/dashboard'>Dashboard</NavLink></li>
+        <li><NavLink to='/dashboard/user-home'>Dashboard</NavLink></li>
         <li><NavLink to='/notification'>Notify</NavLink></li>
         {
             user
@@ -53,7 +53,7 @@ const Navbar = () => {
                     ? 'nav-list bg-orange-200 bg-opacity-40'
                     : 'nav-list bg-orange-50 bg-opacity-0'
             );
-        }} to='/dashboard'>Dashboard</NavLink></li>
+        }} to='/dashboard/user-home'>Dashboard</NavLink></li>
         <li><NavLink className={({ isActive }) => {
             return (
                 isActive

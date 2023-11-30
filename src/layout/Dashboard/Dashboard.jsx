@@ -4,11 +4,11 @@ import Sidebar from "./Sidebar";
 
 const Dashboard = () => {
     return (
-        <div className="flex">
+        <div className="flex h-screen bg-orange-100">
             <div>
                 <Sidebar></Sidebar>
             </div>
-            <div className="bg-slate-400 flex-1 px-16 py-12">
+            <div className="flex-1 px-16 py-12 ml-60">
                 <Outlet></Outlet>
             </div>
         </div>

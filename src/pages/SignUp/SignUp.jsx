@@ -23,7 +23,8 @@ const SignUp = () => {
                         // create user entry in the database
                         const userInfo = {
                             name: data.name,
-                            email: data.email
+                            email: data.email,
+                            role: data.userType
                         }
                         axiosPublic.post('/users', userInfo)
                             .then(res => {
@@ -82,6 +83,14 @@ const SignUp = () => {
                                 {errors.password?.type === 'minLength' && <p className="text-red-600">Password must be 6 characters</p>}
                                 {errors.password?.type === 'maxLength' && <p className="text-red-600">Password must be less than 20 characters</p>}
                                 {errors.password?.type === 'pattern' && <p className="text-red-600">Password must have at least one Uppercase one lower case, one number and one special character.</p>}
+                                <div>
+                                    <select {...register("userType", { required: true })} className="input-text">
+                                        <option value="" disabled selected>Select User Type</option>
+                                        <option value="user">User</option>
+                                        <option value="deliveryMan">Delivery Man</option>
+                                    </select>
+                                    {errors.userType && <span className="text-red-600">User Type is required</span>}
+                                </div>
                                 <div>
                                     <input className="w-[200px] cursor-pointer text-xl font-medium py-4 text-white bg-[#161f26] border-2 border-[#161f26] hover:bg-opacity-0 hover:border-orange-500 hover:text-orange-500 transition duration-200 ease-in-out rounded-full mx-4 my-6 shadow-lg" type="submit" value="Sign Up" />
                                 </div>
