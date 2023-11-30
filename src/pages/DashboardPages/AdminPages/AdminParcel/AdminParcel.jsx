@@ -18,6 +18,7 @@ const AdminParcel = () => {
 
         axiosSecure.get(`/parcels/search-date${searchQuery}`)
             .then(res => {
+                console.log(res.data);
                 setFilteredParcel(res.data);
             })
     };
@@ -35,7 +36,7 @@ const AdminParcel = () => {
             </div>
             <div className="container mx-auto mb-40">
                 <div className="p-4 bg-orange-50 rounded-lg">
-                    <div className="w-full flex justify-end items-center mb-4 gap-12">
+                    <div className="w-full flex justify-end items-end mb-4 gap-12">
                         <div className="w-32">
                             <label className="block font-semibold">Start Date:</label>
                             <input

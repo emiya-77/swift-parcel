@@ -51,7 +51,7 @@ const AdminParcelCard = ({ item, idx }) => {
             });
         } else {
             const item = {
-                status: 'On The Way',
+                status: 'on the way',
                 deliveryManId: selectedDeliveryman,
                 estimatedDeliveryDate: estimatedDeliveryDate
 

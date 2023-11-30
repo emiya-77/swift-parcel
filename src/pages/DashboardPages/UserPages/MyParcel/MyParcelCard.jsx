@@ -150,7 +150,7 @@ const MyParcelCard = ({ item, idx, refresh, setRefresh }) => {
             </td>
             <td>
                 <div>
-                    <div className="font-bold">{ }</div>
+                    <div className="font-bold">{deliveryDateReq}</div>
                 </div>
             </td>
             <td>
@@ -158,7 +158,7 @@ const MyParcelCard = ({ item, idx, refresh, setRefresh }) => {
             </td>
             <td>{deliveryDateReq}</td>
             <td>
-                <div className="font-semibold">{ }</div>
+                <div className="font-semibold">{deliveryManId}</div>
             </td>
             <td>
                 <div className="font-semibold">{status}</div>

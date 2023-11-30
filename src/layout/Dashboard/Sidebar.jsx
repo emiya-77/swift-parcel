@@ -33,7 +33,7 @@ const Sidebar = () => {
                 </div>
                 <div className='mt-4 flex flex-col gap-4 relative'>
                     {
-                        !isAdmin
+                        isAdmin
                             ? (adminMenus?.map((menu, i) => (
                                 <Link className={`${menu?.margin ? 'mt-5' : menu?.marginBot ? 'mb-5' : ''} group flex items-center text-sm gap-3.5 font-medium p-2 hover:bg-[#eec38e] rounded-md`} to={menu?.link} key={i}>
                                     <div>

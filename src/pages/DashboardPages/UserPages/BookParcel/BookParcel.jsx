@@ -37,7 +37,7 @@ const BookParcel = () => {
     const onSubmit = async (data) => {
         console.log(data)
 
-        const currentDate = new Date().toISOString().split('T')[0];
+        const currentDate = new Date();
         const parcelWeight = parseInt(data.parcelWeight);
 
         let price;
@@ -67,7 +67,7 @@ const BookParcel = () => {
             deliveryLat: parseFloat(data.lat),
             deliveryLong: parseFloat(data.long),
             price: parseFloat(price),
-            status: 'Pending'
+            status: 'pending'
         }
         const parcelItemRes = await axiosSecure.post('/parcel', parcelItem);
         console.log('parcelItems:', parcelItemRes)
