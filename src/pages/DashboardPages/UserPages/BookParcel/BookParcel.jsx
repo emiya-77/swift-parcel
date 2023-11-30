@@ -72,6 +72,16 @@ const BookParcel = () => {
         const parcelItemRes = await axiosSecure.post('/parcel', parcelItem);
         console.log('parcelItems:', parcelItemRes)
         if (parcelItemRes.data.insertedId) {
+            const updateInfo = {
+                bookedParcelCount: 1,
+                totalAmountInc: price
+            }
+            axiosSecure.patch(`/users/book-count/${user?.email}`, updateInfo)
+                .then(res => {
+                    if (res.data.modifiedCount > 0) {
+                        console.log('booked parcel count updated');
+                    }
+                })
             // show success popup
             reset();
             setCost(0);

@@ -128,7 +128,7 @@ const Login = () => {
                                 </div>
                             </form>
                             <div className='relative flex justify-center md:justify-start items-center md:flex-none'>
-                                <p className='text-sm md:absolute md:ml-7 md:top-[160px] md:text-base tracking-wider'>Don&apos;t have an account? <Link to='/register' className="font-medium text-orange-500 opacity-100 underline">Register</Link></p>
+                                <p className='text-sm md:absolute md:ml-7 md:top-[160px] md:text-base tracking-wider'>Don&apos;t have an account? <Link to='/signup' className="font-medium text-orange-500 opacity-100 underline">Sign Up</Link></p>
                             </div>
                         </div>
                     </div>
