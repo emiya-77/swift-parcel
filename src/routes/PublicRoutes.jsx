@@ -13,6 +13,7 @@ import AdminParcel from "../pages/DashboardPages/AdminPages/AdminParcel/AdminPar
 import AdminUsers from "../pages/DashboardPages/AdminPages/AdminUsers/AdminUsers";
 import AdminDeliveryMen from "../pages/DashboardPages/AdminPages/AdminDeliveryMen/AdminDeliveryMen";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import PrivateRoute from "./PrivateRoute";
 
 
 export const router = createBrowserRouter([
@@ -37,41 +38,51 @@ export const router = createBrowserRouter([
     },
     {
         path: 'dashboard',
-        element: <Dashboard></Dashboard>,
+        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children: [
             {
                 path: 'user-home',
-                element: <UserHome></UserHome>
+                element: <PrivateRoute><UserHome></UserHome></PrivateRoute>
             },
             {
                 path: 'book-parcel',
-                element: <BookParcel></BookParcel>
+                element: <PrivateRoute><BookParcel></BookParcel></PrivateRoute>
             },
             {
                 path: 'my-parcel',
-                element: <MyParcel></MyParcel>
+                element: <PrivateRoute><MyParcel></MyParcel></PrivateRoute>
             },
             {
                 path: 'my-profile',
-                element: <MyProfile></MyProfile>
+                element: <PrivateRoute><MyProfile></MyProfile></PrivateRoute>
             },
 
             // admin routes
             {
                 path: 'statistics',
-                element: <AdminStatistics></AdminStatistics>
+                element: <PrivateRoute><AdminStatistics></AdminStatistics></PrivateRoute>
             },
             {
                 path: 'all-parcel',
-                element: <AdminParcel></AdminParcel>
+                element: <PrivateRoute><AdminParcel></AdminParcel></PrivateRoute>
             },
             {
                 path: 'all-user',
-                element: <AdminUsers></AdminUsers>
+                element: <PrivateRoute><AdminUsers></AdminUsers></PrivateRoute>
             },
             {
                 path: 'all-delivery',
-                element: <AdminDeliveryMen></AdminDeliveryMen>
+                element: <PrivateRoute><AdminDeliveryMen></AdminDeliveryMen></PrivateRoute>
+            },
+
+            // delivery routes
+            {
+                path: 'my-delivery-list',
+                element: <PrivateRoute><AdminUsers></AdminUsers></PrivateRoute>
+            },
+            {
+                path: 'my-reviews',
+                element: <PrivateRoute><AdminDeliveryMen></AdminDeliveryMen></PrivateRoute>
             },
         ]
     }

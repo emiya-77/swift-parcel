@@ -22,6 +22,11 @@ const Sidebar = () => {
         { name: 'My Profile', link: 'my-profile', icon: AiOutlineUser }
     ]
 
+    const deliveryMenus = [
+        { name: 'My Delivery List', link: 'book-parcel', icon: AiOutlineShoppingCart },
+        { name: 'My Reviews', link: 'my-parcel', icon: HiOutlineBookOpen }
+    ]
+
     return (
         <section className='flex gap-6 fixed'>
             <div className={`bg-orange-50 dark:bg-[#ba721b] dark:text-white min-h-screen ${open ? 'w-72' : 'w-16'} duration-700 text-black px-3`}>
