@@ -38,7 +38,7 @@ const AdminUsers = () => {
     return (
         <>
             <div className="w-96 mx-auto text-center py-6 mb-6 border-y-[3px] border-orange-200">
-                <h1 className="text-4xl">All Users {users.length}</h1>
+                <h1 className="text-4xl">All Users: {users.length}</h1>
             </div>
             <div className="container mx-auto mb-40">
                 <div className="p-4 bg-orange-50 rounded-lg">
