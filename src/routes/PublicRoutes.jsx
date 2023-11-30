@@ -12,12 +12,14 @@ import AdminStatistics from "../pages/DashboardPages/AdminPages/AdminStatistics/
 import AdminParcel from "../pages/DashboardPages/AdminPages/AdminParcel/AdminParcel";
 import AdminUsers from "../pages/DashboardPages/AdminPages/AdminUsers/AdminUsers";
 import AdminDeliveryMen from "../pages/DashboardPages/AdminPages/AdminDeliveryMen/AdminDeliveryMen";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 
 export const router = createBrowserRouter([
     {
         path: "/",
         element: <Root></Root>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: '/',

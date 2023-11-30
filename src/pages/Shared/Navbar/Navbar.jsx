@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { Link, NavLink } from "react-router-dom";
+import { IoIosNotificationsOutline } from "react-icons/io";
 
 
 const Navbar = () => {
@@ -28,7 +29,7 @@ const Navbar = () => {
     const smNavLinks = <>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/dashboard/user-home'>Dashboard</NavLink></li>
-        <li><NavLink to='/notification'>Notify</NavLink></li>
+        <li><NavLink to='/notification'><IoIosNotificationsOutline /></NavLink></li>
         {
             user
                 ? <li><Link to='/login'>
@@ -60,7 +61,7 @@ const Navbar = () => {
                     ? `nav-list bg-orange-200 bg-opacity-40`
                     : 'nav-list bg-orange-50 bg-opacity-0'
             );
-        }} to='/notification'>Notify</NavLink></li>
+        }} to='/notification'><IoIosNotificationsOutline className="w-7 h-7" /></NavLink></li>
     </>
 
     const logLinks = <>
