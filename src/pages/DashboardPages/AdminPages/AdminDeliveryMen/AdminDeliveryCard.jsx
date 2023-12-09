@@ -1,8 +1,20 @@
+import { useEffect, useState } from "react";
 import { MdOutlineManageAccounts } from "react-icons/md";
+import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 
 
 const AdminDeliveryCard = ({ item, idx, refresh, setRefresh }) => {
-    const { name, phone, parcelDelivered, averageReview } = item || {};
+    const axiosPublic = useAxiosPublic();
+    const { name, email, phone, parcelDelivered, averageReview } = item || {};
+    const [deliveredParcel, setDeliveredParcel] = useState([]);
+
+    useEffect(() => {
+        axiosPublic.get(`/parcel-delivered/${email}`)
+            .then(res => {
+                const filteredParcels = res.data.filter(item => item.status === 'delivered');
+                setDeliveredParcel(filteredParcels);
+            })
+    }, [axiosPublic, email]);
     return (
         <tr>
             <th>
@@ -21,7 +33,7 @@ const AdminDeliveryCard = ({ item, idx, refresh, setRefresh }) => {
                 </div>
             </td>
             <td>
-                <div className="font-semibold">{ }</div>
+                <div className="font-semibold">{deliveredParcel.length}</div>
             </td>
             <td>
                 <div className="font-semibold">{ }</div>

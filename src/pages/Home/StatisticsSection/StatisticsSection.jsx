@@ -27,7 +27,7 @@ const StatisticsSection = () => {
                 <h1 className="text-5xl mb-4 tracking-wider">Our Results</h1>
                 <p className="text-2xl">Satisfied Customers</p>
             </div>
-            <div className="container mx-auto flex justify-center my-12">
+            <div className="container mx-auto flex justify-center flex-wrap gap-4 my-12">
                 <StatisticsSectionCard icon={<PiPackageThin />} title="Parcels Booked" value={parcelsBooked} />
                 <StatisticsSectionCard icon={<FaTruckFast />} title="Parcels Delivered" value={parcelsDelivered} />
                 <StatisticsSectionCard icon={<FaUsers />} title="Users Count" value={usersCount} />

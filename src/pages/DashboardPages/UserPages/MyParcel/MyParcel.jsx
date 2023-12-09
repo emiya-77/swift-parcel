@@ -1,22 +1,24 @@
 import { useEffect, useState } from "react";
 import useParcel from "../../../../hooks/useParcel";
 import MyParcelCard from "./MyParcelCard";
-import useAxiosPublic from "../../../../hooks/useAxiosPublic";
+import useAuth from "../../../../hooks/useAuth";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 
 const MyParcel = () => {
     // const [parcel] = useParcel();
     const [refresh, setRefresh] = useState(false);
-    const axiosPublic = useAxiosPublic();
+    const { user } = useAuth();
+    const axiosSecure = useAxiosSecure();
     const [parcel, setParcel] = useState([]);
     const [selectedStatus, setSelectedStatus] = useState('All');
 
     useEffect(() => {
-        axiosPublic.get('/parcel')
+        axiosSecure.get(`/parcel/${user.email}`)
             .then(res => {
                 setParcel(res.data);
             })
-    }, [refresh, axiosPublic]);
+    }, [refresh, axiosSecure, user.email]);
 
     const filteredParcel = selectedStatus === 'All'
         ? parcel

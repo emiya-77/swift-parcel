@@ -5,6 +5,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import { MdCloudUpload, MdUpdate } from 'react-icons/md';
 import useAuth from '../../../../hooks/useAuth';
+import MyWishListCard from './MyWishListCard';
 
 const MyProfile = () => {
     const { user, updateUserProfile } = useAuth();
@@ -83,7 +84,7 @@ const MyProfile = () => {
                 />
                 <div>
                     <label htmlFor="profilePicture" className="cursor-pointer">
-                        <MdCloudUpload className="text-blue-500 mr-2" />
+                        <MdCloudUpload className="text-orange-400 mr-2" />
                         Upload Profile Picture
                     </label>
                     <input
@@ -114,11 +115,16 @@ const MyProfile = () => {
 
                 {/* Add more input fields for other user information */}
 
-                <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded">
-                    <MdUpdate className="mr-2" />
+                <button type="submit" className="bg-orange-300 text-white py-2 px-4 rounded">
                     Update Profile
                 </button>
             </form>
+            <div className='my-20'>
+                <div className='font-semibold text-3xl mb-8 tracking-wider'>
+                    My Wish List
+                </div>
+                <MyWishListCard></MyWishListCard>
+            </div>
         </div>
     );
 };

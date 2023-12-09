@@ -14,6 +14,9 @@ import AdminUsers from "../pages/DashboardPages/AdminPages/AdminUsers/AdminUsers
 import AdminDeliveryMen from "../pages/DashboardPages/AdminPages/AdminDeliveryMen/AdminDeliveryMen";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import PrivateRoute from "./PrivateRoute";
+import MyDeliveryList from "../pages/DashboardPages/DeliveryManPages/MyDeliveryList/MyDeliveryList";
+import MyReviews from "../pages/DashboardPages/DeliveryManPages/MyReviews/MyReviews";
+import AdminRoute from "./AdminRoute";
 
 
 export const router = createBrowserRouter([
@@ -60,29 +63,29 @@ export const router = createBrowserRouter([
             // admin routes
             {
                 path: 'statistics',
-                element: <PrivateRoute><AdminStatistics></AdminStatistics></PrivateRoute>
+                element: <AdminRoute><AdminStatistics></AdminStatistics></AdminRoute>
             },
             {
                 path: 'all-parcel',
-                element: <PrivateRoute><AdminParcel></AdminParcel></PrivateRoute>
+                element: <AdminRoute><AdminParcel></AdminParcel></AdminRoute>
             },
             {
                 path: 'all-user',
-                element: <PrivateRoute><AdminUsers></AdminUsers></PrivateRoute>
+                element: <AdminRoute><AdminUsers></AdminUsers></AdminRoute>
             },
             {
                 path: 'all-delivery',
-                element: <PrivateRoute><AdminDeliveryMen></AdminDeliveryMen></PrivateRoute>
+                element: <AdminRoute><AdminDeliveryMen></AdminDeliveryMen></AdminRoute>
             },
 
             // delivery routes
             {
                 path: 'my-delivery-list',
-                element: <PrivateRoute><AdminUsers></AdminUsers></PrivateRoute>
+                element: <PrivateRoute><MyDeliveryList></MyDeliveryList></PrivateRoute>
             },
             {
                 path: 'my-reviews',
-                element: <PrivateRoute><AdminDeliveryMen></AdminDeliveryMen></PrivateRoute>
+                element: <PrivateRoute><MyReviews></MyReviews></PrivateRoute>
             },
         ]
     }

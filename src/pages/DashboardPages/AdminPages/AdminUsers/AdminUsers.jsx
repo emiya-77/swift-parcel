@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import AdminUsersCard from "./AdminUsersCard";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import useAuth from "../../../../hooks/useAuth";
 
 
 const AdminUsers = () => {
+    const { user } = useAuth();
     const [refresh, setRefresh] = useState(false);
     const axiosSecure = useAxiosSecure();
     const [users, setUsers] = useState([]);
@@ -13,9 +15,10 @@ const AdminUsers = () => {
     useEffect(() => {
         axiosSecure.get('/users')
             .then(res => {
-                setUsers(res.data);
+                const filteredUsers = res?.data.filter(item => item?.email !== user?.email)
+                setUsers(filteredUsers);
             })
-    }, [refresh, axiosSecure]);
+    }, [refresh, axiosSecure, user?.email]);
 
     const indexOfLastUser = currentPage * usersPerPage;
     const indexOfFirstUser = indexOfLastUser - usersPerPage;

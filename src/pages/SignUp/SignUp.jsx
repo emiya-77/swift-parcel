@@ -1,16 +1,17 @@
 import { useContext, useState } from 'react';
-import { FaEyeSlash, FaEye } from 'react-icons/fa';
+import { FaEyeSlash, FaEye, FaGoogle } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 
 const SignUp = () => {
     const axiosPublic = useAxiosPublic();
     const [showPassword, setShowPassword] = useState();
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
-    const { createUser, updateUserProfile } = useContext(AuthContext);
+    const { createUser, updateUserProfile, signInWithGoogle } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const onSubmit = data => {
@@ -52,14 +53,66 @@ const SignUp = () => {
             })
     };
 
+    const handleGoogleSignIn = () => {
+        signInWithGoogle()
+            .then(result => {
+                console.log(result.user);
+                const user = result.user;
+                const userInfo = {
+                    name: user.displayName,
+                    email: user.email,
+                    role: 'user',
+                    photo: '',
+                    phone: '',
+                    bookedParcelCount: 0,
+                    totalAmount: 0
+                }
+                axiosPublic.post('/users', userInfo)
+                    .then(res => {
+                        if (res.data.insertedId) {
+                            console.log('user added to the database')
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'User created successfully.',
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                            navigate('/');
+                        }
+                    })
+                navigate('/');
+                toast.success('Logged In Successfully!', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+            })
+            .catch(error => {
+                toast.error(error.message, {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+                console.log(error);
+            })
+    }
+
 
     return (
         <>
-            <div className='w-full pt-20 flex justify-center items-center bg-split h-screen'>
+            <div className='w-full flex justify-center items-center bg-orange-200 h-screen'>
                 <div className='mx-2 lg:mx-0 container relative bg-white lg:w-[1200px] h-[750px] flex flex-col-reverse md:flex-row justify-center rounded-3xl shadow-lg'>
-                    <Link to='/home'>
-                        <img className='w-40 md:w-48 absolute top-[270px] md:top-10 left-[76px] md:left-12' src="/img/logo/elysium-light.png" alt="logo" />
-                    </Link>
                     <div className='p-0 md:pl-20 w-full md:w-1/3 h-full relative flex justify-center items-center'>
                         <div className='w-full md:absolute'>
                             <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col items-center md:items-start'>
@@ -97,17 +150,22 @@ const SignUp = () => {
                                     </select>
                                     {errors.userType && <span className="text-red-600">User Type is required</span>}
                                 </div>
-                                <div>
+                                <div className='flex'>
                                     <input className="w-[200px] cursor-pointer text-xl font-medium py-4 text-white bg-[#161f26] border-2 border-[#161f26] hover:bg-opacity-0 hover:border-orange-500 hover:text-orange-500 transition duration-200 ease-in-out rounded-full mx-4 my-6 shadow-lg" type="submit" value="Sign Up" />
+                                    <button onClick={handleGoogleSignIn} className='w-[65px] h-[65px] cursor-pointer text-xl font-medium py-4 text-white bg-[#161f26] border-2 border-[#161f26] hover:bg-opacity-0 hover:border-orange-500 hover:text-orange-500 transition duration-200 ease-in-out rounded-full m-6 shadow-lg flex justify-center items-center'>
+                                        <FaGoogle className='text-2xl hover:text-orange-500'></FaGoogle>
+                                    </button>
                                 </div>
                             </form>
                             <div className='relative flex justify-center md:justify-start items-center md:flex-none'>
-                                <p className='text-sm md:absolute md:ml-7 md:top-[72px] md:text-base tracking-wider'>Already have an account? <Link to='/login' className="font-medium text-orange-500 opacity-100 underline">Login</Link></p>
+                                <p className='text-sm md:absolute md:ml-7 md:top-2 md:text-base tracking-wider'>Already have an account? <Link to='/login' className="font-medium text-orange-500 opacity-100 underline">Login</Link></p>
                             </div>
                         </div>
                     </div>
                     <div className='w-full h-96 md:w-2/3 md:h-full rounded-3xl flex justify-center items-center overflow-hidden'>
-                        <img className='w-full h-full object-cover' src='/img/food3.jpg' alt="dinner" />
+                        <Link to='/'>
+                            <img className='w-80 h-80 object-cover' src='/img/logo/swift-parcel.png' alt="dinner" />
+                        </Link>
                     </div>
                 </div>
             </div>
